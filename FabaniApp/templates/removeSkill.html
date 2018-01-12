@@ -1,0 +1,19 @@
+{% extends 'layout.html' %} 
+
+{% block title %}Remove skill{% endblock %} 
+
+{% block content %}
+
+<h1>Remove skill</h1>
+
+<p>Are you sure you want to remove "{{ skill }}" skill</p>
+
+<form method="POST" enctype="multipart/formdata" class="form">
+    {% csrf_token %}
+    <a href={% url 'skill_detail' pk=skill.pk %} class="btn btn-primary">
+            Cancel
+    </a>
+    <button type="submit" class="btn btn-warning">Remove</button>
+</form>
+
+{% endblock %}
