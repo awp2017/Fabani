@@ -9,18 +9,6 @@ from django.dispatch import receiver
 
 # Create your models here.
 
-class Employer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-@receiver(post_save, sender=User)
-def create_employer_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
-
 class Skill(models.Model):
 	name = models.CharField(max_length = 30, blank = False)
 	description = models.CharField(max_length = 200, blank = True)
@@ -41,7 +29,7 @@ class Project(models.Model):
     title = models.CharField(max_length=45)
     # idEmployee = models.ManyToManyField(Employee, null=True)
     # idEmployer = models.ForeignKey(Employer)
-    skills = models.ManyToManyField(Skill, null=True)
+    skills = models.ManyToManyField(Skill, related_name='project_skills')
     deadline = models.DateField()
     payment = models.IntegerField()
     active = models.BooleanField(default=True)
@@ -56,6 +44,20 @@ class Comment(models.Model):
     def __str__(self):
         return self.text
 
+
+class Employee(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    applications = models.ManyToManyField(Project, related_name='employee_applications')
+    projectInProgress = models.ManyToManyField(Project, related_name='employee_projectInProgress')
+
+@receiver(post_save, sender=User)
+def create_employee(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user(sender, instance, **kwargs):
+    instance.profile.save()
 
 
 

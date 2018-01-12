@@ -16,3 +16,22 @@ import json
 
 def home(request):
     return HttpResponse("Hello, world. You're at the polls index.")
+
+def login_view(request):
+    context = {}
+    if request.method == 'GET':
+        form = LoginForm()
+    elif request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(username=form.cleaned_data['username'],
+                                password=form.cleaned_data['password'])
+            if user:
+                login(request=request,
+                      user=user)
+                return redirect('home')
+            else:
+                context['error_message'] = 'Wrong username or password!'
+    context['form'] = form
+    return render(request, 'login.html', context)
+

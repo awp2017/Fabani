@@ -1,0 +1,14 @@
+<nav class="navbar navbar-default">
+    <a class="navbar-brand" href="{% url 'group_list' %}">Home</a>
+    <ul class="nav navbar-nav">
+        {% if not request.user.is_authenticated %}
+        <li>
+            <a href="{% url 'login' %}">Login</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'logout' %}">Logout</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
