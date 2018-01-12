@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block title %} Register {%endblock %}
+
+{% block header %}
+<h1>Register</h1>
+<p class="lead">Please complete the following fields</p>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container" style="width:15%">
+
+<form method = "POST " enctype = "multipart/formdata" class = "form">
+     {% csrf_token %}
+    {{ form.as_p }}
+    <button type = "Submit " class = "btn btn-primary">Register</button>
+    
+</form>
+</div>
+{% endblock %}
