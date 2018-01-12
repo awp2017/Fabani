@@ -16,3 +16,15 @@ import json
 
 def home(request):
     return HttpResponse("Hello, world. You're at the polls index.")
+
+def register_view(request):
+	if request.method == "GET":
+		form = EmployerRegisterForm()
+	elif request.method == "POST":
+		form = EmployerRegisterForm(request.POST)
+		if form.is_valid():
+			#user.Create....
+class employerProfile(DetailView):
+    template_name = 'employerProfile.html'
+   # model = Employer
+    # context_object_name = 'employer'
