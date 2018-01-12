@@ -1,0 +1,50 @@
+{% extends 'layout.html' %} 
+
+{% block title %}{{ skill.name }}{% endblock %} 
+
+{% block content %}
+
+<h1>Skill: {{ task.name }}</h1>
+
+{% if skill.description %}
+
+	<div class="row">
+    	<div class="col-sm-12 text-justify">
+        	{{ skill.description }}
+    	</div>
+	</div>
+
+{% endif %}
+
+<div class="row">
+    <div class="col-sm-6">
+        <a href="{% url 'skill_delete' pk=skill.pk %}">
+            <button class="btn btn-primary">
+                Delete
+            </button>
+        </a>
+    </div>
+    <div class="col-sm-6">
+        <div class="float-sm-right">
+            <a href="{% url 'skill_update' pk=skill.pk %}">
+                <button class="btn btn-primary">
+                    Edit
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-6">
+        Created at {{ skill.created }}
+    </div>
+    <div class="col-sm-6">
+        <div class="float-sm-right">
+            Updated at {{ skill.updated }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
