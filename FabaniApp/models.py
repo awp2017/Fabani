@@ -3,11 +3,24 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+class Skill(models.Model):
+	name = models.CharField(max_length = 30, blank = False)
+	proficiency = models.PositiveSmallIntegerField(choices=[
+            (1, "Beginner"),
+            (2, "Junior"),
+            (3, "Middle"),
+            (4, "Senior"),
+            (5, "Expert"),
+        ], default = 1)
+
+	def __str__(self):
+		return self.name
+
 class Project(models.Model):
     title = models.CharField(max_length=45)
     # idEmployee = models.ManyToManyField(Employee, null=True)
     # idEmployer = models.ForeignKey(Employer)
-    # idSkillList = models.ForeignKey(SkillList)
+    skills = models.ManyToManyField(Skill, null=True)
     deadline = models.DateField()
     payment = models.IntegerField()
     active = models.BooleanField(default=True)
@@ -16,32 +29,9 @@ class Project(models.Model):
         return self.title
 
 class Comment(models.Model):
-    # idProject = models.ForeignKey(Project)
+    project = models.ForeignKey(Project)
     text = models.CharField(max_length=500)
 
     def __str__(self):
-        return self.textsssclass Skill(models.Model):
-	name = models.CharField(max_length = 30, blanck = False)
-	proficiency = models.PositiveSmallIntegerField(choices=[
-            (1, "Beginner"),
-            (2, "Junior"),
-            (3, "Middle"),
-            (4, "Senior"),
-            (5, "Expert"),
-        ], default = 1)
+        return self.text
 
-	def __str__(self):
-        return self.name
-        
-class Skill(models.Model):
-	name = models.CharField(max_length = 30, blanck = False)
-	proficiency = models.PositiveSmallIntegerField(choices=[
-            (1, "Beginner"),
-            (2, "Junior"),
-            (3, "Middle"),
-            (4, "Senior"),
-            (5, "Expert"),
-        ], default = 1)
-
-	def __str__(self):
-        return self.name
