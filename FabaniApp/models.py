@@ -13,9 +13,8 @@ class Skill(models.Model):
             (4, "Senior"),
             (5, "Expert"),
         ], default = 1)
-
 	created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+	updated = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
 		return self.name
