@@ -111,4 +111,3 @@ class AddApplicants(View):
 		project.save()
 		# pdb.set_trace()
 		return redirect(reverse('projects_list'))
-
