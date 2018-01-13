@@ -36,5 +36,25 @@ def login_view(request):
     context['form'] = form
     return render(request, 'login.html', context)
 
+def register_view(request):
+	if request.method == "GET":
+		form = EmployerRegisterForm()
+	elif request.method == "POST":
+		form = EmployerRegisterForm(request.POST)
+		#if form.is_valid():
+			#user.Create....
 
+class EmployerProfileView(DetailView):
+    template_name = 'employerProfile.html'
+   # model = Employer
+    # context_object_name = 'employer'
 
+class Projects(ListView):
+    template_name = 'projects.html'
+    model = Project
+    context_object_name = 'projects'
+
+class ProjectView(DetailView):
+	template_name = 'project.html'
+	model = Project;
+	context_object_name = 'project'
