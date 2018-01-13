@@ -9,12 +9,11 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
+from FabaniApp.models import Project
 
 from FabaniApp.models import Project, Comment
 
 import json
-
-# Create your views here.
 
 def home(request):
     return HttpResponse("Hello, world. You're at the polls index.")

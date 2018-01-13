@@ -1,0 +1,36 @@
+{% extends 'layout.html' %} 
+
+{% block title %} Projects Detail {% endblock %} 
+
+{% block content %}
+
+<h1>Projects Details</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Active</th>
+            <th>Title</th>
+            <th>Employer</th>
+            <th>Payment</th>
+            <th>Deadline</th>
+            <th></th>
+        </tr>    
+    </thead>
+    <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.pk }}</td>
+                <td>{{ project.active }}</td>
+                <td>{{ project.name }}</td>
+                <td>{{ project.employer }}</td>
+                <td>{{ project.payment }}</td>
+                <td>{{ project.deadline }}</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
