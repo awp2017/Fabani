@@ -43,8 +43,9 @@
             {% endfor %}
         </tbody>
     </table>
-
-  <a href="{% url 'addEditSkills' %}">Edit skills</a>
+<br>
+  <a class="btn btn-primary href="{% url 'addEditSkills' %}">Edit skills</a>
+  <br>
 {% endif %}
 
 {% if request.user.groups.all.0.name == 'employer' %}
