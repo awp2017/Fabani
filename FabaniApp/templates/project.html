@@ -14,10 +14,8 @@
 
 <h3>Required skills :</h3>
     <ul>
-        {% for skill in skill %}
-        {% if skill.idSkillList == project.idSkillList %}
+        {% for skill in project.skills.all %}
             <li>{{ skill.name }}</li>
-        {% empty %}
             <li>{{ skill.proficiency }}</li>
         {% endfor %}
     </ul>
