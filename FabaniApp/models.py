@@ -24,7 +24,7 @@ class Project(models.Model):
     description = models.CharField(max_length=500)
     # idEmployee = models.ManyToManyField(Employee, null=True)
     # idEmployer = models.ForeignKey(Employer)
-    skills = models.ManyToManyField(Skill, null=True)
+    skills = models.ManyToManyField(Skill)
     deadline = models.DateField()
     payment = models.IntegerField()
     active = models.BooleanField(default=True)

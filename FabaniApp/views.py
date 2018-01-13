@@ -22,8 +22,10 @@ def register_view(request):
 		form = EmployerRegisterForm()
 	elif request.method == "POST":
 		form = EmployerRegisterForm(request.POST)
-		if form.is_valid():
+		#if form.is_valid():
 			#user.Create....
+
+
 class employerProfile(DetailView):
     template_name = 'employerProfile.html'
    # model = Employer
