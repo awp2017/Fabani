@@ -9,12 +9,23 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
+from FabaniApp.models import Project
+
 from FabaniApp.models import Project,Comment
 from FabaniApp import forms
+import pdb
+import json
 
+from FabaniApp.models import Project
+from FabaniApp import forms
+from FabaniApp.models import Project, Comment
+import pdb
 import json
 import pdb
 import json
+
+def home(request):
+	return HttpResponse("Hello, world. You're at the polls index.")
 
 def home(request):
 	return HttpResponse("Hello, world. You're at the polls index.")
@@ -44,6 +55,11 @@ def register_view(request):
 		form = EmployerRegisterForm(request.POST)
 		#if form.is_valid():
 			#user.Create....
+
+class Projects(ListView):
+	template_name = 'projects.html'
+	model = Project
+	context_object_name = 'projects'
 
 class UserProfileView(DetailView):
     template_name = 'userProfile.html'
@@ -91,3 +107,4 @@ class UserProjects(ListView):
 class AddApplicants(View):
 	def post (self, request, *args, **kwargs):
 		pdb.set_trace()
+
