@@ -28,6 +28,9 @@ class Project(models.Model):
     description = models.CharField(max_length=500, blank = True)
     employee = models.ManyToManyField(User, related_name='employee_projects')
     employer = models.ForeignKey(User, related_name='employer_project')
+    # employee = models.ManyToManyField(User, null=True, related_name='employee_projects')
+    # employer = models.ForeignKey(Employer)
+
     skills = models.ManyToManyField(Skill)
     deadline = models.DateTimeField()
     payment = models.IntegerField()
@@ -37,7 +40,7 @@ class Project(models.Model):
         return self.title
 
 class Comment(models.Model):
-    project = models.ForeignKey(Project, related_name="projects")
+    project = models.ForeignKey(Project, related_name="comments")
     text = models.CharField(max_length=500)
 
     def __str__(self):

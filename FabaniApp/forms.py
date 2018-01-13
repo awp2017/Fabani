@@ -11,6 +11,7 @@ class CreateProjectForm(forms.ModelForm):
     deadline = forms.DateTimeField(input_formats=["%m/%d/%Y %I:%M %p"])
     #deadline = forms.DateTimeField(widget = forms.widgets.DateTimeInput(format = ("%m %d %Y %H:%M")))
 
+class EmployerRegisterForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ('title','description','deadline','payment','skills')
@@ -25,3 +26,9 @@ class CreateProjectForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(label="Username")
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
+
+
+
+class ApplyToProject(forms.ModelForm):
+    class Meta:
+        model = Project
