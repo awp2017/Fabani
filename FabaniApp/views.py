@@ -56,10 +56,10 @@ class ProjectView(DetailView):
 	context_object_name = 'project'
 
 
-class ContactView(View):
+class ContactView(TemplateView):
     template_name = 'contact.html'
 
-class AboutView(View):
+class AboutView(TemplateView):
     template_name = 'about.html'
 
 class ProjectCreateView(CreateView):
@@ -70,7 +70,7 @@ class ProjectCreateView(CreateView):
         return reverse('project',kwargs = {'pk': self.object.pk } )
 
 class UserProjects(ListView):
-	template_name = 'UserProjects.html'
+	template_name = 'userProjects.html'
 	model = Project
 	context_object_name = 'projects'
 
