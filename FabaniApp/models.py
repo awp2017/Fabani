@@ -22,8 +22,8 @@ class Skill(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=45)
     description = models.CharField(max_length=500)
-    # idEmployee = models.ManyToManyField(Employee, null=True)
-    # idEmployer = models.ForeignKey(Employer)
+    # employee = models.ManyToManyField(Employee, null=True)
+    # employer = models.ForeignKey(Employer)
     skills = models.ManyToManyField(Skill)
     deadline = models.DateField()
     payment = models.IntegerField()
