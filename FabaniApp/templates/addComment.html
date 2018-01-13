@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block title %}{{ Add Comment }}{%endblock %}
+
+{% block header %}
+<h1>{{ Add a new comment }}</h1>
+{% endblock %}
+
+
+{% block content %}
+
+<form method="POST" enctype="multipart/formdata" class="form">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="text">Text</label>
+        <input class="form-control" type="text" name="text" required="" id="id_text" maxlength="400">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}

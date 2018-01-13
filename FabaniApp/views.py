@@ -9,7 +9,8 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
-from FabaniApp.models import Project,Comment
+from FabaniApp.models import Project,Comment, Skill
+from FabaniApp import forms
 from FabaniApp.forms import CreateProjectForm, LoginForm
 
 import json
@@ -73,9 +74,40 @@ class ProjectCreateView(CreateView):
     model = Project
     def get_success_url(self,*args,**kwargs):
         return reverse('project',kwargs = {'pk': self.object.pk } )
+    def form_valid(self,form):
+        project = form.save(commit=False)
+        project.employer = self.request.user
+        return super(ProjectCreateView,self).form_valid(form)
 
 class UserProjects(ListView):
 	template_name = 'userProjects.html'
 	model = Project
 	context_object_name = 'projects'
+
+class AddEditSkills(CreateView):
+    model = Project
+    form_class = forms.AddEditSkillForm
+    template_name = 'createEditSkillList.html'
+    context_object_name = 'addEditSkills'
+
+class AddCommentView(CreateView):
+    template_name = 'addComment.html'
+    model = Comment
+    context_object_name = 'comment'
+    form_class = forms.CommentForm
+
+    def get_succes_url(self, *args, **kwargs):
+        return reverse(
+            'project', 
+            kwargs={
+                'pk': self.object.pk
+            }
+        )
+    def form_valid(self, form):
+        comment = form.save(commit = False)
+        comment.author = self.request.user
+        comment.project = self.kwargs['pk']
+        comment.save()
+        return super(AddCommentView, self).form_valid(form)
+
 

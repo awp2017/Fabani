@@ -24,11 +24,11 @@
         <caption>Your skills</caption>
         <thead class="thead-light">
             <tr>
-                <th scope="col">Skill</th>
-                <th scope="col">Description</th>
-                <th scope="col">Proficiency</th>
-                <th scope="col">Created</th>
-                <th scope="col">Updated</th>
+                <th scope="col">Skill </th>
+                <th scope="col">Description </th>
+                <th scope="col">Proficiency </th>
+                <th scope="col">Created </th>
+                <th scope="col">Updated </th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +43,8 @@
             {% endfor %}
         </tbody>
     </table>
+
+
 {% endif %}
 
 {% if request.user.groups.all.0.name == 'employer' %}
