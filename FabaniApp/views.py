@@ -58,3 +58,10 @@ class ProjectView(DetailView):
 	template_name = 'project.html'
 	model = Project;
 	context_object_name = 'project'
+
+
+class ContactView(View):
+    template_name = 'contact.html'
+
+class AboutView(View):
+    template_name = 'about.html'

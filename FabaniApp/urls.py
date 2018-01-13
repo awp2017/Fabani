@@ -23,4 +23,7 @@ urlpatterns = [
     url(r'^project/(?P<pk>[0-9]+)/$', views.ProjectView.as_view(), name='project'),
     #url(r'^employer/register/$', views.EmployerRegisterView.as_view(), name='employer_register'),
     url(r'^user/(?P<pk>[0-9]+)/$', views.UserProfileView.as_view(), name='user_profile'),
+    url(r'^about/$', views.AboutView.as_view(), name='about'),
+    url(r'^contact/$', views.ContactView.as_view(), name='contact'),
+
 ]
