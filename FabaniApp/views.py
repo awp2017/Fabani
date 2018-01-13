@@ -9,9 +9,8 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
-from FabaniApp.models import Project
-
-from FabaniApp.models import Project, Comment
+from FabaniApp.models import Project,Comment
+from FabaniApp import forms
 
 import json
 
@@ -65,3 +64,16 @@ class ContactView(View):
 
 class AboutView(View):
     template_name = 'about.html'
+
+class ProjectCreateView(CreateView):
+    template_name = 'createProject.html'
+    form_class = forms.CreateProjectForm
+    model = Project
+    def get_success_url(self,*args,**kwargs):
+        return reverse('project',kwargs = {'pk': self.object.pk } )
+
+class UserProjects(ListView):
+	template_name = 'UserProjects.html'
+	model = Project
+	context_object_name = 'projects'
+

@@ -7,8 +7,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-# Create your models here.
-
 class Skill(models.Model):
     name = models.CharField(max_length = 30, blank = False)
     description = models.CharField(max_length = 200, blank = True)
@@ -22,17 +20,16 @@ class Skill(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     users = models.ManyToManyField(User, related_name='skills', blank=True, null=True)
-
     def __str__(self):
         return self.name
 
 class Project(models.Model):
     title = models.CharField(max_length=45)
     description = models.CharField(max_length=500, blank = True)
-    # employee = models.ManyToManyField(Employee, null=True)
-    # employer = models.ForeignKey(Employer)
+    employee = models.ManyToManyField(User, related_name='employee_projects')
+    employer = models.ForeignKey(User, related_name='employer_project')
     skills = models.ManyToManyField(Skill)
-    deadline = models.DateField()
+    deadline = models.DateTimeField()
     payment = models.IntegerField()
     active = models.BooleanField(default=True)
 
