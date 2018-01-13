@@ -57,5 +57,17 @@
 	{{project.employer.username}}
 </h3>
 
+{% for comment in project.comments.all %}
+	<p> {{ comment.text }} </p>
+{% endfor %}
+
+{% if project.active == True %}
+<form method="POST" action="{% url 'add_applicant' project.pk %}">
+	{% csrf_token %}
+	<input type="submit" value="{{ project }}" text="Apply">
+	}
+</form>
+{% endif %}
+
 </div>
 {% endblock %}
