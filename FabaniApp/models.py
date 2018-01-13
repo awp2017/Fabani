@@ -20,7 +20,6 @@ class Skill(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     users = models.ManyToManyField(User, related_name='skills', blank=True, null=True)
-
     def __str__(self):
         return self.name
 
@@ -30,7 +29,7 @@ class Project(models.Model):
     employee = models.ManyToManyField(User, related_name='employee_projects')
     employer = models.ForeignKey(User, related_name='employer_project')
     skills = models.ManyToManyField(Skill)
-    deadline = models.DateField()
+    deadline = models.DateTimeField()
     payment = models.IntegerField()
     active = models.BooleanField(default=True)
 
