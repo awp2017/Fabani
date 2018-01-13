@@ -58,7 +58,6 @@ class ProjectView(DetailView):
 	model = Project;
 	context_object_name = 'project'
 
-<<<<<<< HEAD
 class ProjectCreateView(CreateView):
     template_name = 'createProject.html'
     form_class = forms.CreateProjectForm
@@ -66,10 +65,7 @@ class ProjectCreateView(CreateView):
     def get_success_url(self,*args,**kwargs):
         return reverse('project',kwargs = {'pk': self.object.pk } )
 
-
-=======
 class UserProjects(ListView):
 	template_name = 'UserProjects.html'
 	model = Project
 	context_object_name = 'projects'
->>>>>>> Master
