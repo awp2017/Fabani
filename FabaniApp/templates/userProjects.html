@@ -1,12 +1,22 @@
 {% extends 'layout.html' %} 
 
-{% block title %} My Projects {% endblock %} 
+{% block header %}
+<h1>Your projects</h1>
+{% if request.user.groups.all.0.name == 'employer' %}
+<p class="lead">Projects added by you</p>
+{% endif %}
+
+{% if request.user.groups.all.0.name == 'employee' %}
+<p class="lead">Projects that you have applied to and worked at in the past</p>
+{% endif %}
+
+{% endblock %}
 
 {% block content %}
+<div class = 'container'>
 
 <h1>My Projects</h1>
-
-<table>
+<table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>   ID   </th>
@@ -19,19 +29,19 @@
         </tr>    
     </thead>
     <tbody>
-        {% if request.user.groups.0.name == "employer" %}
-            {% for project in request.user.employer_project %}
+        {% if request.user.groups.all.0.name == 'employer' %}
+            {% for project in request.user.employer_projects.all %}
                 <tr>
                 <td>{{ project.pk }}</td>
                 <td>{{ project.active }}</td>
-                <td>{{ project.name }}</td>
+                <td>{{ project.title }}</td>
                 <td>{{ project.employer }}</td>
                 <td>{{ project.payment }}</td>
                 <td>{{ project.deadline }}</td>
                 <td>
-                <a href="{% url 'project' pk=project.pk %}">
+                <a href="{% url 'see_applicants' pk=project.pk %}">
                     <button class="btn btn-info">
-                        Detalii
+                        See applicants
                     </button>
                 </a>
                 </td>
@@ -41,11 +51,11 @@
 
         {% else %}
 
-        {% for project in request.user.employee_project %}
+        {% for project in request.user.employee_projects.all %}
             <tr>
                 <td>{{ project.pk }}</td>
                 <td>{{ project.active }}</td>
-                <td>{{ project.name }}</td>
+                <td>{{ project.title }}</td>
                 <td>{{ project.employer }}</td>
                 <td>{{ project.payment }}</td>
                 <td>{{ project.deadline }}</td>
@@ -63,5 +73,5 @@
         {% endif %}
     </tbody>
 </table>
-
+</div>
 {% endblock %}

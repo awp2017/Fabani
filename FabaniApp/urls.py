@@ -19,15 +19,14 @@ from django.contrib import admin
 from FabaniApp import views
 
 urlpatterns = [
-    url(r'^$', views.ProjectsView.as_view(), name='projects_list'),
-    url(r'^user_projects/(?P<pk>[0-9]+)/$', views.UserProjects.as_view(), name='user_projects'),
+    url(r'^user_projects/$', views.UserProjects.as_view(), name='user_projects'),
     url(r'^project/(?P<pk>[0-9]+)/$', views.ProjectView.as_view(), name='project'),
     url(r'^project/add/$',views.ProjectCreateView.as_view(), name='project_create'),
-    # url(r'^employer/(?P<pk>[0-9]+)/$', views.EmployerProfileView.as_view(), name='employer_profile'),
     #url(r'^employer/register/$', views.EmployerRegisterView.as_view(), name='employer_register'),
-    url(r'^user/(?P<pk>[0-9]+)/$', views.UserProfileView.as_view(), name='user_profile'),
+    url(r'^user/$', views.UserProfileView.as_view(), name='user_profile'),
     url(r'^about/$', views.AboutView.as_view(), name='about'),
     url(r'^contact/$', views.ContactView.as_view(), name='contact'),
-
-
+    url(r'^login', views.login_view, name="login"),
+    url(r'^logout/$', views.logout_view, name="logout"),
+    url(r'^$', views.ProjectsView.as_view(), name='projects_list'),
 ]
