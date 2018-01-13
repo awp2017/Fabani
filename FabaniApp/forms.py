@@ -1,6 +1,6 @@
 from django import forms
 #from FabaniApp.models import Employer
-from FabaniApp.models import Project, Skill
+from FabaniApp.models import Project, Skill, Comment
 #class EmployerRegisterForm(forms.ModelForm):
 #    class Meta:
 #        model = Employer
@@ -15,7 +15,7 @@ class CreateProjectForm(forms.ModelForm):
         fields = ('title','description','deadline','payment','skills')
     def clean_skills(self):
         return [skill for skill in Skill.objects.filter(id__in=dict(self.data)["skills"])]
-    
+
         #import pdb;pdb.set_trace()
 
 #class EmployerRegisterForm(forms.ModelForm):
@@ -37,3 +37,9 @@ class AddEditSkillForm(forms.ModelForm):
     def clean_skills(self):
         return [skill for skill in Skill.objects.filter(id__in=dict(self.data)["skills"])]
     
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('text', 'project', 'author')
+
