@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<table>
+<table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>ID</th>
@@ -16,7 +16,6 @@
             <th>Employer</th>
             <th>Payment</th>
             <th>Deadline</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -24,11 +23,10 @@
             <tr>
                 <td>{{ project.pk }}</td>
                 <td>{{ project.active }}</td>
-                <td>{{ project.name }}</td>
+                <td>{{ project.title }}</td>
                 <td>{{ project.employer }}</td>
                 <td>{{ project.payment }}</td>
                 <td>{{ project.deadline }}</td>
-                <td></td>
             </tr>
         {% endfor %}
     </tbody>

@@ -11,7 +11,8 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from FabaniApp.models import Project,Comment
 from FabaniApp import forms
-from FabaniApp.models import Project, Comment
+from FabaniApp.forms import CreateProjectForm, LoginForm
+
 import json
 
 def login_view(request):
@@ -26,11 +27,16 @@ def login_view(request):
             if user:
                 login(request=request,
                       user=user)
-                return redirect('home')
+                return redirect('projects_list')
             else:
                 context['error_message'] = 'Wrong username or password!'
     context['form'] = form
     return render(request, 'login.html', context)
+
+def logout_view(request):
+    if request.method == 'GET':
+        logout(request)
+        return redirect('login')
 
 def register_view(request):
 	if request.method == "GET":
@@ -40,7 +46,7 @@ def register_view(request):
 		#if form.is_valid():
 			#user.Create....
 
-class UserProfileView(DetailView):
+class UserProfileView(TemplateView):
     template_name = 'userProfile.html'
     model = User
     context_object_name = 'user'
@@ -64,7 +70,7 @@ class AboutView(TemplateView):
 
 class ProjectCreateView(CreateView):
     template_name = 'createProject.html'
-    form_class = forms.CreateProjectForm
+    form_class = CreateProjectForm
     model = Project
     def get_success_url(self,*args,**kwargs):
         return reverse('project',kwargs = {'pk': self.object.pk } )

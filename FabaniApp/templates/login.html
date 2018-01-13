@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block header %}
+<h1>Welcome, {{ user.username }}!</h1>
+<p class="lead">Latest projects</p>
+{% endblock %}
+
+{% block content %}
+<div class = 'container'>
+
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    {{ form.errors }}
+</div>
+{% endif %}
+
+<form method="POST" enctype="multipart/formdata" class="form">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_username">Username:</label>
+        <input type="text" name="username" required="" id="id_username" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="id_password">Password:</label>
+        <input type="password" name="password" required="" id="id_password" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+</div>
+{% endblock %}
