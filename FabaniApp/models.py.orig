@@ -27,7 +27,11 @@ class Skill(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length=45)
+<<<<<<< HEAD
     description = models.CharField(max_length=500, blank=True)
+=======
+    description = models.CharField(max_length=500, blank = True)
+>>>>>>> adi
     # idEmployee = models.ManyToManyField(Employee, null=True)
     # idEmployer = models.ForeignKey(Employer)
     skills = models.ManyToManyField(Skill, related_name='project_skills')
