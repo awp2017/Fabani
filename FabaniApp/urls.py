@@ -22,6 +22,8 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^projects/$', views.Projects.as_view(), name='projects_list'),
     url(r'^project/(?P<pk>[0-9]+)/$', views.ProjectView.as_view(), name='project'),
+    url(r'^project/add/$',views.ProjectCreateView.as_view(), name='project_create'),
+    # url(r'^project/(?P<pk>[0-9]+)/$, views.ProjectView.as_view(), name='project'),
     # url(r'^employer/register/$', views.EmployerRegisterView.as_view(), name='employer_register'),
     # url(r'^employer/(?P<pk>[0-9]+)/$', views.EmployerProfileView.as_view(), name='employer_profile'),
 ]

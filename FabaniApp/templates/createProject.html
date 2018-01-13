@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>
-    Add/Edit Project
+    Add/Edit Skill
 </h1>
 
 {% if form.errors %}
@@ -17,8 +17,8 @@
     {% csrf_token %}
 
     <div class="form-group">
-        <label for="id_name">Name: </label>
-        <input class="form-control" type="text" name="name" value="{{ form.instance.name }}" required="" id="id_name" maxlength="30">
+        <label for="id_title">Title: </label>
+        <input class="form-control" type="text" name="title" value="{{ form.instance.title }}" required="" id="id_title" maxlength="100">
     </div>
 
     <div class="form-group">
@@ -26,9 +26,25 @@
         <textarea class="form-control" name="description" id="id_description" required="" rows="2" cols="20" maxlength="200">{{ form.instance.description }}</textarea>
     </div>
 
+    <div class="form-group">
+        <label for="id_payment">Cost: </label>
+        <textarea class="form-control" name="payment" id="id_payment" required="" rows="2" cols="20" maxlength="200">{{ form.instance.payment }}</textarea>
+    </div>
+
      <div class="form-group">
+        <label for="id_deadline">Deadline:</label>
+        <div class='input-group date' id='id_deadline'>
+            <input type='text' class="form-control" name="deadline" 
+                   value="{{ form.instance.deadline|date:'m/d/Y h:i A' }}"/>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
         <label for="id_skills">Skills:</label>
-        <select class="form-control" name="group" required="" id="id_group">
+        <select class="form-control" name="skills" required="" id="id_skills">
             {% for value, display in form.fields.project.skills %}
                 <option value="{{ value }}"
                         {% if value == form.instance.project.pk %} 
@@ -40,8 +56,15 @@
         </select>
     </div>
 
+
     <button type="submit" class="btn btn-primary">Save</button>
 
 </form>
 
-{% endblock %} 
+{% endblock %} {% block scripts %}
+<script type="text/javascript">
+    $(function() {
+        $('#id_deadline').datetimepicker();
+    });
+</script>
+{% endblock %}

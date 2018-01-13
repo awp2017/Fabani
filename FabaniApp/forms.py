@@ -1,6 +1,12 @@
 from django import forms
-from app.models import Employer 
-class EmployerRegisterForm(forms.ModelForm):
+#from FabaniApp.models import Employer
+from FabaniApp.models import Project
+#class EmployerRegisterForm(forms.ModelForm):
+#    class Meta:
+#        model = Employer
+#        fields = ('username','firstname','lastname','email')
+
+class CreateProjectForm(forms.ModelForm):
     class Meta:
-        model = Employer
-        fields = ('username','firstname','lastname','email')
+        model = Project
+        fields = ('title','description','deadline','payment','skills')
