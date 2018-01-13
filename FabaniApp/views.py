@@ -12,29 +12,29 @@ from django.contrib.auth.models import User
 from FabaniApp.models import Project
 
 from FabaniApp.models import Project, Comment
-
+import pdb
 import json
 
 def home(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+	return HttpResponse("Hello, world. You're at the polls index.")
 
 def login_view(request):
-    context = {}
-    if request.method == 'GET':
-        form = LoginForm()
-    elif request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            user = authenticate(username=form.cleaned_data['username'],
-                                password=form.cleaned_data['password'])
-            if user:
-                login(request=request,
-                      user=user)
-                return redirect('home')
-            else:
-                context['error_message'] = 'Wrong username or password!'
-    context['form'] = form
-    return render(request, 'login.html', context)
+	context = {}
+	if request.method == 'GET':
+		form = LoginForm()
+	elif request.method == 'POST':
+		form = LoginForm(request.POST)
+		if form.is_valid():
+			user = authenticate(username=form.cleaned_data['username'],
+								password=form.cleaned_data['password'])
+			if user:
+				login(request=request,
+					  user=user)
+				return redirect('home')
+			else:
+				context['error_message'] = 'Wrong username or password!'
+	context['form'] = form
+	return render(request, 'login.html', context)
 
 def register_view(request):
 	if request.method == "GET":
@@ -45,16 +45,20 @@ def register_view(request):
 			#user.Create....
 
 class EmployerProfileView(DetailView):
-    template_name = 'employerProfile.html'
+	template_name = 'employerProfile.html'
    # model = Employer
-    # context_object_name = 'employer'
+	# context_object_name = 'employer'
 
 class Projects(ListView):
-    template_name = 'projects.html'
-    model = Project
-    context_object_name = 'projects'
+	template_name = 'projects.html'
+	model = Project
+	context_object_name = 'projects'
 
 class ProjectView(DetailView):
 	template_name = 'project.html'
 	model = Project;
 	context_object_name = 'project'
+
+class AddApplicants(View):
+	def post (self, request, *args, **kwargs):
+		pdb.set_trace()

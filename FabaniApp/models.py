@@ -28,7 +28,7 @@ class Skill(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=45)
     description = models.CharField(max_length=500, blank = True)
-    # employee = models.ManyToManyField(Employee, null=True)
+    # employee = models.ManyToManyField(User, null=True, related_name='employee_projects')
     # employer = models.ForeignKey(Employer)
     skills = models.ManyToManyField(Skill)
     deadline = models.DateField()
@@ -39,7 +39,7 @@ class Project(models.Model):
         return self.title
 
 class Comment(models.Model):
-    project = models.ForeignKey(Project, related_name="projects")
+    project = models.ForeignKey(Project, related_name="comments")
     text = models.CharField(max_length=500)
 
     def __str__(self):
