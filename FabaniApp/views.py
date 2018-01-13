@@ -14,9 +14,6 @@ from FabaniApp import forms
 
 import json
 
-def home(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
-
 def login_view(request):
     context = {}
     if request.method == 'GET':
@@ -48,8 +45,8 @@ class UserProfileView(DetailView):
     model = User
     context_object_name = 'user'
 
-class Projects(ListView):
-    template_name = 'projects.html'
+class ProjectsView(ListView):
+    template_name = 'home.html'
     model = Project
     context_object_name = 'projects'
 

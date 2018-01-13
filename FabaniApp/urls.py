@@ -19,8 +19,8 @@ from django.contrib import admin
 from FabaniApp import views
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
-    url(r'^projects/$', views.Projects.as_view(), name='projects_list'),
+    url(r'^$', views.ProjectsView.as_view(), name='projects_list'),
+    url(r'^home/$', views.ProjectsView.as_view(), name='projects_list'),
     url(r'^user_projects/$', views.UserProjects.as_view(), name='user_projects'),
     url(r'^project/(?P<pk>[0-9]+)/$', views.ProjectView.as_view(), name='project'),
     url(r'^project/add/$',views.ProjectCreateView.as_view(), name='project_create'),
