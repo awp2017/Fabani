@@ -41,5 +41,5 @@ class AddEditSkillForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('text', 'project', 'author')
+        fields = ('text',)
 

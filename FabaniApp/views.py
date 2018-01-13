@@ -106,8 +106,13 @@ class AddCommentView(CreateView):
     def form_valid(self, form):
         comment = form.save(commit = False)
         comment.author = self.request.user
-        comment.project = self.kwargs['pk']
+        comment.project_id = self.kwargs['pk']
         comment.save()
-        return super(AddCommentView, self).form_valid(form)
-
+        return redirect(reverse(
+            'project',
+            kwargs={
+                'pk': self.kwargs['pk']
+            }
+        )
+        )
 
