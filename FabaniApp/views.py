@@ -127,6 +127,10 @@ class AddCommentView(CreateView):
 
 class AddApplicants(View):
 	def post (self, request, *args, **kwargs):
-		pdb.set_trace()
+		project = Project.objects.get(id=kwargs['pk'])
+		project.employee.add(request.user)
+		project.save()
+		# pdb.set_trace()
+		return redirect(reverse('projects_list'))
 
 

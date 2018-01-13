@@ -64,8 +64,7 @@
 {% if project.active == True %}
 <form method="POST" action="{% url 'add_applicant' project.pk %}">
 	{% csrf_token %}
-	<input type="submit" value="{{ project }}" text="Apply">
-	}
+	<input type="submit" value="Apply" text="Apply">
 </form>
 {% endif %}
 </div>

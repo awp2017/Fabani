@@ -27,6 +27,14 @@
                 <td>{{ project.employer }}</td>
                 <td>{{ project.payment }}</td>
                 <td>{{ project.deadline }}</td>
+                <td>
+                <a href="{% url 'project' pk=project.pk %}">
+                    <button class="btn btn-info">
+                        Detalii
+                    </button>
+                </a>
+                </td>
+                <td></td>
             </tr>
         {% endfor %}
     </tbody>
