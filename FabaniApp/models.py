@@ -45,19 +45,6 @@ class Comment(models.Model):
         return self.text
 
 
-class Employee(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    applications = models.ManyToManyField(Project, related_name='employee_applications')
-    projectInProgress = models.ManyToManyField(Project, related_name='employee_projectInProgress')
-
-@receiver(post_save, sender=User)
-def create_employee(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user(sender, instance, **kwargs):
-    instance.profile.save()
 
 
 
