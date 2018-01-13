@@ -11,6 +11,8 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from FabaniApp.models import Project
 
+from FabaniApp.models import Project, Comment
+
 import json
 
 def home(request):
@@ -24,8 +26,7 @@ def register_view(request):
 		#if form.is_valid():
 			#user.Create....
 
-
-class employerProfile(DetailView):
+class EmployerProfileView(DetailView):
     template_name = 'employerProfile.html'
    # model = Employer
     # context_object_name = 'employer'
@@ -34,3 +35,8 @@ class Projects(ListView):
     template_name = 'projects.html'
     model = Project
     context_object_name = 'projects'
+
+class ProjectView(DetailView):
+	template_name = 'project.html'
+	model = Project;
+	context_object_name = 'project'
