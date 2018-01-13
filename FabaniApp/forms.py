@@ -1,5 +1,4 @@
 from django import forms
-<<<<<<< HEAD
 #from FabaniApp.models import Employer
 from FabaniApp.models import Project, Skill, Comment
 #class EmployerRegisterForm(forms.ModelForm):
@@ -18,15 +17,13 @@ class LoginForm(forms.Form):
 
 class AddEditSkillForm(forms.ModelForm):
     skills = forms.ModelChoiceField(queryset=Skill.objects.all())
-    class Meta:
-        model = Project
-        fields = ("skills",)
-
-    def clean_skills(self):
-        return [skill for skill in Skill.objects.filter(id__in=dict(self.data)["skills"])]
     
-
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('text',)
+
+class LoginForm(forms.Form):
+    username = forms.CharField(label="Username")
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+

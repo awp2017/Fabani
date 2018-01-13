@@ -14,6 +14,11 @@ from FabaniApp import forms
 from FabaniApp.forms import CreateProjectForm, LoginForm
 import pdb
 import json
+import pdb
+import json
+
+def home(request):
+	return HttpResponse("Hello, world. You're at the polls index.")
 
 def home(request):
 	return HttpResponse("Hello, world. You're at the polls index.")
@@ -35,11 +40,14 @@ def login_view(request):
 				context['error_message'] = 'Wrong username or password!'
 	context['form'] = form
 	return render(request, 'login.html', context)
+<<<<<<< HEAD
 
 def logout_view(request):
     if request.method == 'GET':
         logout(request)
         return redirect('login')
+=======
+>>>>>>> added applicants to project in template
 
 def register_view(request):
 	if request.method == "GET":
@@ -96,6 +104,7 @@ class UserProjects(ListView):
 	model = Project
 	context_object_name = 'projects'
 
+<<<<<<< HEAD
 class AddEditSkills(CreateView):
     model = Project
     form_class = forms.AddEditSkillForm
@@ -137,3 +146,8 @@ class AddApplicants(View):
 	def post (self, request, *args, **kwargs):
 		pdb.set_trace()
 
+=======
+class AddApplicants(View):
+	def post (self, request, *args, **kwargs):
+		pdb.set_trace()
+>>>>>>> added applicants to project in template
