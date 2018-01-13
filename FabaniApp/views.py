@@ -45,6 +45,6 @@ class ProjectCreateView(CreateView):
     form_class = forms.CreateProjectForm
     model = Project
     def get_success_url(self,*args,**kwargs):
-        return reverse('project_detail',kwargs = {'pk': self.object.pk } )
+        return reverse('project',kwargs = {'pk': self.object.pk } )
 
 
