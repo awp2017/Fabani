@@ -25,8 +25,8 @@
             <th>          Employer         </th>
             <th>   Payment  </th>
             <th>     Deadline     </th>
-            <th></th>
-        </tr>    
+            <th> Details </th>
+        </tr>
     </thead>
     <tbody>
         {% if request.user.groups.all.0.name == 'employer' %}
@@ -39,13 +39,12 @@
                 <td>{{ project.payment }}</td>
                 <td>{{ project.deadline }}</td>
                 <td>
-                <a href="{% url 'see_applicants' pk=project.pk %}">
+                <a href="{% url 'project' pk=project.pk %}">
                     <button class="btn btn-info">
-                        See applicants
+                        Details
                     </button>
                 </a>
                 </td>
-                <td></td>
                 </tr>
             {% endfor %}
 
@@ -62,11 +61,10 @@
                 <td>
                 <a href="{% url 'project' pk=project.pk %}">
                     <button class="btn btn-info">
-                        Detalii
+                        Details
                     </button>
                 </a>
                 </td>
-                <td></td>
             </tr>
         {% endfor %}
 

@@ -24,5 +24,32 @@
 
 <h3>Payment : {{project.payment}}</h3>
 
+{% if request.user == project.employer %}
+<h3>Applicants to project: </h3>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>  Username   </th>
+            <th>   Email   </th>
+            <th>     Skills   </th>
+            <th>  Accept candidate  </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in project.employee.all %}
+            <tr>
+            <td>{{ employee.username }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.skills }}</td>
+            <a href="{% url 'project' pk=project.pk %}">
+                <button class="btn btn-info">
+                    Accept
+                </button>
+            </a>
+            </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 </div>
 {% endblock %}
