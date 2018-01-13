@@ -89,6 +89,11 @@ class AddEditSkills(CreateView):
     form_class = forms.AddEditSkillForm
     template_name = 'createEditSkillList.html'
     context_object_name = 'addEditSkills'
+    def form_valid(self,form):
+        self.request.user.skills.clear()
+        self.request.user.skills = form.cleaned_data["skills"]
+        self.request.user.save()
+        return redirect(reverse('user_profile'))
 
 class AddCommentView(CreateView):
     template_name = 'addComment.html'

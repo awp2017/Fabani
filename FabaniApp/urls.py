@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^user/$', views.UserProfileView.as_view(), name='user_profile'),
     url(r'^about/$', views.AboutView.as_view(), name='about'),
     url(r'^contact/$', views.ContactView.as_view(), name='contact'),
-    url(r'^user/(?P<pk>[0-9]+)/add/skill/$', views.AddEditSkills.as_view(), name='addEditSkills'),
+    url(r'^user/add/skill/$', views.AddEditSkills.as_view(), name='addEditSkills'),
 
     url(r'^login', views.login_view, name="login"),
     url(r'^logout/$', views.logout_view, name="logout"),
