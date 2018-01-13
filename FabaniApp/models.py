@@ -27,14 +27,10 @@ class Skill(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length=45)
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=500, blank = True)
     # idEmployee = models.ManyToManyField(Employee, null=True)
     # idEmployer = models.ForeignKey(Employer)
-<<<<<<< HEAD
     skills = models.ManyToManyField(Skill, related_name='project_skills')
-=======
-    skills = models.ManyToManyField(Skill)
->>>>>>> master
     deadline = models.DateField()
     payment = models.IntegerField()
     active = models.BooleanField(default=True)
