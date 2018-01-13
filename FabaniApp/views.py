@@ -40,3 +40,8 @@ class ProjectView(DetailView):
 	template_name = 'project.html'
 	model = Project;
 	context_object_name = 'project'
+
+class UserProjects(ListView):
+	template_name = 'UserProjects.html'
+	model = Project
+	context_object_name = 'projects'

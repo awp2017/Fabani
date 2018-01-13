@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
 class Skill(models.Model):
 	name = models.CharField(max_length = 30, blank = False)
@@ -22,8 +23,8 @@ class Skill(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=45)
     description = models.CharField(max_length=500, blank = True)
-    # employee = models.ManyToManyField(Employee, null=True)
-    # employer = models.ForeignKey(Employer)
+    employee = models.ManyToManyField(User, related_name='employee_projects')
+    employer = models.ForeignKey(User, related_name='employer_project')
     skills = models.ManyToManyField(Skill)
     deadline = models.DateField()
     payment = models.IntegerField()

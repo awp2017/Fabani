@@ -1,0 +1,67 @@
+{% extends 'layout.html' %} 
+
+{% block title %} My Projects {% endblock %} 
+
+{% block content %}
+
+<h1>My Projects</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Active</th>
+            <th>Title</th>
+            <th>Employer</th>
+            <th>Payment</th>
+            <th>Deadline</th>
+            <th></th>
+        </tr>    
+    </thead>
+    <tbody>
+        {% if request.user.groups.0.name == "employer" %}
+            {% for project in request.user.employer_project %}
+                <tr>
+                <td>{{ project.pk }}</td>
+                <td>{{ project.active }}</td>
+                <td>{{ project.name }}</td>
+                <td>{{ project.employer }}</td>
+                <td>{{ project.payment }}</td>
+                <td>{{ project.deadline }}</td>
+                <td>
+                <a href="{% url 'project' pk=project.pk %}">
+                    <button class="btn btn-info">
+                        Detalii
+                    </button>
+                </a>
+                </td>
+                <td></td>
+                </tr>
+            {% endfor %}
+
+        {% else %}
+
+        {% for project in request.user.employee_project %}
+            <tr>
+                <td>{{ project.pk }}</td>
+                <td>{{ project.active }}</td>
+                <td>{{ project.name }}</td>
+                <td>{{ project.employer }}</td>
+                <td>{{ project.payment }}</td>
+                <td>{{ project.deadline }}</td>
+                <td>
+                <a href="{% url 'project' pk=project.pk %}">
+                    <button class="btn btn-info">
+                        Detalii
+                    </button>
+                </a>
+                </td>
+                <td></td>
+            </tr>
+        {% endfor %}
+
+        {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}
