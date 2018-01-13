@@ -37,8 +37,9 @@ class Project(models.Model):
         return self.title
 
 class Comment(models.Model):
-    project = models.ForeignKey(Project)
     text = models.CharField(max_length=500)
+    project = models.ForeignKey(Project, related_name="comments")
+    author = models.ForeignKey(User)
 
     def __str__(self):
         return self.text

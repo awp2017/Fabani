@@ -1,6 +1,6 @@
 from django import forms
 #from FabaniApp.models import Employer
-from FabaniApp.models import Project, Skill
+from FabaniApp.models import Project, Skill, Comment
 #class EmployerRegisterForm(forms.ModelForm):
 #    class Meta:
 #        model = Employer
@@ -16,12 +16,14 @@ class CreateProjectForm(forms.ModelForm):
         fields = ('title','description','deadline','payment','skills')
     def clean_skills(self):
         return [skill for skill in Skill.objects.filter(id__in=dict(self.data)["skills"])]
-        
-#class EmployerRegisterForm(forms.ModelForm):
-#    class Meta:
-#        model = Employer
-#        fields = ('username','first_name','last_name','email')
+       
 
 class LoginForm(forms.Form):
     username = forms.CharField(label="Username")
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('text', 'project', 'author')
