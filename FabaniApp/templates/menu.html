@@ -1,0 +1,21 @@
+<nav class="navbar navbar-default">
+    <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+    <ul class="nav navbar-nav">
+        <!--TODO: add href when templates are ready-->
+        <li>
+            <a href="">My Projects</a>
+        </li>
+        <li>
+            <a href="">My Profile</a>
+        </li>
+        {% if not request.user.is_authenticated %}
+        <li>
+            <a href="">Login</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="">Logout</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>

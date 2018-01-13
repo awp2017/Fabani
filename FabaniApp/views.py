@@ -17,6 +17,24 @@ import json
 def home(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 
+def login_view(request):
+    context = {}
+    if request.method == 'GET':
+        form = LoginForm()
+    elif request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(username=form.cleaned_data['username'],
+                                password=form.cleaned_data['password'])
+            if user:
+                login(request=request,
+                      user=user)
+                return redirect('home')
+            else:
+                context['error_message'] = 'Wrong username or password!'
+    context['form'] = form
+    return render(request, 'login.html', context)
+
 def register_view(request):
 	if request.method == "GET":
 		form = EmployerRegisterForm()
@@ -25,10 +43,10 @@ def register_view(request):
 		#if form.is_valid():
 			#user.Create....
 
-class EmployerProfileView(DetailView):
-    template_name = 'employerProfile.html'
-   # model = Employer
-    # context_object_name = 'employer'
+class UserProfileView(DetailView):
+    template_name = 'userProfile.html'
+    model = User
+    context_object_name = 'user'
 
 class Projects(ListView):
     template_name = 'projects.html'
@@ -40,6 +58,7 @@ class ProjectView(DetailView):
 	model = Project;
 	context_object_name = 'project'
 
+<<<<<<< HEAD
 class ProjectCreateView(CreateView):
     template_name = 'createProject.html'
     form_class = forms.CreateProjectForm
@@ -48,3 +67,9 @@ class ProjectCreateView(CreateView):
         return reverse('project',kwargs = {'pk': self.object.pk } )
 
 
+=======
+class UserProjects(ListView):
+	template_name = 'UserProjects.html'
+	model = Project
+	context_object_name = 'projects'
+>>>>>>> Master
