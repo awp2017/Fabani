@@ -20,7 +20,7 @@ from FabaniApp import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    # url(r'^project/(?P<pk>[0-9]+)/$, views.ProjectView.as_view(), name='project'),
+    url(r'^project/(?P<pk>[0-9]+)/$', views.ProjectView.as_view(), name='project'),
     # url(r'^employer/register/$', views.EmployerRegisterView.as_view(), name='employer_register'),
     # url(r'^employer/(?P<pk>[0-9]+)/$', views.EmployerProfileView.as_view(), name='employer_profile'),
 ]

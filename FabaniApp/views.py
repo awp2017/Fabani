@@ -10,6 +10,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+from FabaniApp.models import Project, Comment
+
 import json
 
 # Create your views here.
@@ -26,7 +28,12 @@ def register_view(request):
 			#user.Create....
 
 
-class employerProfile(DetailView):
+class EmployerProfileView(DetailView):
     template_name = 'employerProfile.html'
    # model = Employer
     # context_object_name = 'employer'
+
+class ProjectView(DetailView):
+	template_name = 'project.html'
+	model = Project;
+	context_object_name = 'project'
