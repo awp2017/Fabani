@@ -1,9 +1,8 @@
 <nav class="navbar navbar-default">
-    <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+    <a class="navbar-brand" href="{% url 'projects_list' %}">Home</a>
     <ul class="nav navbar-nav">
-        <!--TODO: add href when templates are ready-->
         <li>
-            <a href="">My Projects</a>
+            <a href="{% url 'user_projects' request.user.id %}">My Projects</a>
         </li>
         <li>
             <a href="{% url 'user_profile' request.user.id %}">My Profile</a>
