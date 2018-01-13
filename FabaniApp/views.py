@@ -44,10 +44,10 @@ def register_view(request):
 		#if form.is_valid():
 			#user.Create....
 
-class EmployerProfileView(DetailView):
-    template_name = 'employerProfile.html'
-   # model = Employer
-    # context_object_name = 'employer'
+class UserProfileView(DetailView):
+    template_name = 'userProfile.html'
+    model = User
+    context_object_name = 'user'
 
 class Projects(ListView):
     template_name = 'projects.html'

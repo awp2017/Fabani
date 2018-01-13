@@ -1,0 +1,53 @@
+{% extends 'layout.html' %} 
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block header %}
+<h1>{{ user.username }}'s profile details</h1>
+{% endblock %}
+
+
+{% block content %}
+<div class = 'container'>
+
+<h3>Username :</h3>
+    <p>{{ user.username }}</p>
+<h3>First name :</h3>
+    <p>{{ user.first_name }}</p>
+<h3>Last name :</h3>
+    <p>{{ user.last_name }}</p>
+<h3>Email :</h3>
+    <p>{{ user.email }}</p>
+
+{% if user.groups.all.0.name == 'employee' %}
+    <table>
+        <caption>Your skills</caption>
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Skill</th>
+                <th scope="col">Description</th>
+                <th scope="col">Proficiency</th>
+                <th scope="col">Created</th>
+                <th scope="col">Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for skill in user.skills.all %}
+            <tr>
+                <td>{{ skill.name }}</td>
+                <td>{{ skill.description }}</td>
+                <td>{{ skill.proficiency }}</td>
+                <td>{{ skill.created }}</td>
+                <td>{{ skill.updated }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+{% if user.groups.all.0.name == 'employer' %}
+<!--<h3>Company : {{ user.companyName }}</h3>-->
+{% endif %}
+
+</div>
+{% endblock %}
