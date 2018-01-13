@@ -9,15 +9,9 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
-<<<<<<< HEAD
 from FabaniApp.models import Project,Comment
 from FabaniApp import forms
-=======
-
 from FabaniApp.models import Project, Comment
-from FabaniApp.forms import CommentForm
->>>>>>> Fuck that database
-
 import json
 
 def login_view(request):
@@ -78,16 +72,14 @@ class ProjectCreateView(CreateView):
 class UserProjects(ListView):
 	template_name = 'userProjects.html'
 	model = Project
-<<<<<<< HEAD
 	context_object_name = 'projects'
-=======
-	form_class = CommentForm
 
 
 class AddCommentView(CreateView):
     template_name = 'addComment.html'
     model = Comment
     context_object_name = 'comment'
+    form_class = forms.CommentForm
 
     def get_succes_url(self, *args, **kwargs):
         return reverse(
@@ -103,12 +95,4 @@ class AddCommentView(CreateView):
         comment.save()
         return super(AddCommentView, self).form_valid(form)
 
-
-
-
-
-
-
-
->>>>>>> Fuck that database
 

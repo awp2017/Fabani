@@ -21,18 +21,10 @@ from FabaniApp import views
 urlpatterns = [
     url(r'^$', views.ProjectsView.as_view(), name='projects_list'),
     url(r'^user_projects/(?P<pk>[0-9]+)/$', views.UserProjects.as_view(), name='user_projects'),
-<<<<<<< HEAD
     url(r'^project/(?P<pk>[0-9]+)/$', views.ProjectView.as_view(), name='project'),
-<<<<<<< HEAD
-=======
     url(r'^project/(?P<pk>[0-9]+)/addComment/$', views.AddCommentView.as_view(), name='comment'),
-    url(r'^project/(?P<pk>[0-9]+)/$', views.ProjectView.as_view(), name='project'),
->>>>>>> Modified urls
     url(r'^project/add/$',views.ProjectCreateView.as_view(), name='project_create'),
-    # url(r'^employer/(?P<pk>[0-9]+)/$', views.EmployerProfileView.as_view(), name='employer_profile'),
-=======
-    url(r'^project/(?P<pk>[0-9]+)/addComment/$', views.AddCommentView.as_view(), name='comment'),
->>>>>>> Fuck that database
+    # url(r'^employer/(?P<pk>[0-9]+)/$', views.EmployerProfileView.as_view(), name='employer_profile'),s
     #url(r'^employer/register/$', views.EmployerRegisterView.as_view(), name='employer_register'),
     url(r'^user/(?P<pk>[0-9]+)/$', views.UserProfileView.as_view(), name='user_profile'),
     url(r'^about/$', views.AboutView.as_view(), name='about'),
