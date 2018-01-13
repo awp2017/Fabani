@@ -1,0 +1,43 @@
+{% extends 'layout.html' %} 
+
+{% block title %} Skills {% endblock %} 
+
+{% block content %}
+<h1>
+    Your skills:
+</h1>
+
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    {{ form.errors }}
+</div>
+{% endif %}
+
+<form method="POST" enctype="multipart/formdata" class="form">
+    {% csrf_token %}
+
+{% if user.groups.all.0.name == 'employee' %}
+    <div class="form-group">
+        <label for="id_skills">Skills:</label>
+        <select multiple = "multiple" class="form-control" name="skills" required="" id="id_skills">
+            
+            {% for value,display in form.skills.field.choices %}
+
+                <option value="{{ value }}"
+                        {% if value == form.instance.project.pk %} 
+                            selected 
+                        {% endif %}>
+                    {{ display }}
+                </option>            
+            {% endfor %}
+          
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+
+{% endif %}
+
+
+</form>
+
+{% endblock %} 
